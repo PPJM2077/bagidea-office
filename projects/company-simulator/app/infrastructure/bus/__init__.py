@@ -1,0 +1,1 @@
+"""NATS communication bus package."""

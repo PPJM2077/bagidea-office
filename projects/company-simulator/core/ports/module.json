@@ -1,0 +1,20 @@
+{
+  "name": "@company-simulator/ports",
+  "version": "0.1.0",
+  "type": "core",
+  "layer": "core",
+  "exports": [
+    "DomainEvent",
+    "EventBus",
+    "EventHandler",
+    "StateStore"
+  ],
+  "dependencies": {
+    "@company-simulator/types": ">=0.1.0"
+  },
+  "health": {
+    "maxPublicExports": 20,
+    "maxCyclomaticComplexity": 8,
+    "testCoverageRequired": 80
+  }
+}

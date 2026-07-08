@@ -1,0 +1,19 @@
+{
+  "name": "@company-simulator/api-server",
+  "version": "0.1.0",
+  "type": "app",
+  "layer": "app",
+  "exports": [],
+  "dependencies": {
+    "@company-simulator/types": ">=0.1.0",
+    "@company-simulator/domain": ">=0.1.0",
+    "@company-simulator/analytics": ">=0.1.0",
+    "@company-simulator/sim-run": ">=0.1.0",
+    "@company-simulator/report-gen": ">=0.1.0"
+  },
+  "health": {
+    "maxPublicExports": 10,
+    "maxCyclomaticComplexity": 8,
+    "testCoverageRequired": 75
+  }
+}

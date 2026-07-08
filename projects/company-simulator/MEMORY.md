@@ -1,0 +1,13 @@
+- [Workflow](workflow.md) — 5-step company workflow: CEO → Assignment → Execution → Review → Complete
+- [SOP](sop.md) — Standard Operating Procedures ฉบับที่ 1 (8 procedures)
+- [Architecture Review](architecture-review.md) — Modularity standards, plugin architecture, governance
+- [Documentation Standards](documentation-standards.md) — Templates & conventions for all docs
+- [Risk Framework](risk-framework.md) — Risk criteria, thresholds, safe mode, escalation
+- [CI Enforcement Scripts](scripts/) — 6 Python validation scripts for module.json, layer boundaries, circular imports, API surface, internal imports, ADR compliance
+- [Tech Stack](tech-stack.md) — FastAPI / PostgreSQL 16 / Redis 7 / NATS 2.10 / Qdrant 1.10 / LiteLLM
+- [Architecture](architecture.md) — System architecture: modular monolith, event-driven tick engine, AI agent system, two-tier memory (PG + Qdrant), AI Gateway design
+- [Research Report](research-report.md) — Research Director's report on 3 missing systems: AI Communication Bus, Knowledge System (RAG+KG), Governance Framework. Roadmap, schema designs, technology choices
+- [Module Schema](module.schema.json) — JSON Schema for module.json validation
+- [Root Module Manifest](module.json) — Root-level module.json declaring project as app-type
+- [ADR Template](docs/adr/TEMPLATE.md) — Canonical ADR template per architecture-review.md §3.3
+- [Health-Check Routes](app/routes/health_services.py) — Wire-up of knowledge_service, data_ingestion, risk_engine into FastAPI health probes (GET /health/knowledge, /health/ingestion, /health/risk), registered in app/main.py via create_app() factory

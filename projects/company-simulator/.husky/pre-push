@@ -1,0 +1,34 @@
+#!/bin/bash
+set -euo pipefail
+
+# Resolve the project's own venv so the gate works on any machine.
+if [ -x ".venv/Scripts/python.exe" ]; then
+  PY=".venv/Scripts/python.exe"
+elif [ -x ".venv/bin/python" ]; then
+  PY=".venv/bin/python"
+else
+  PY="python"
+fi
+
+echo "=== pre-push: Module manifest validation ==="
+"$PY" scripts/validate-modules.py
+echo ""
+echo "=== pre-push: Layer boundary check ==="
+"$PY" scripts/check-layer-boundary.py
+echo ""
+echo "=== pre-push: Circular import check ==="
+"$PY" scripts/check-circular-imports.py
+echo ""
+echo "=== pre-push: API surface check ==="
+"$PY" scripts/check-api-surface.py
+echo ""
+echo "=== pre-push: Internal imports check ==="
+"$PY" scripts/check-internal-imports.py
+echo ""
+echo "=== pre-push: ADR check ==="
+"$PY" scripts/check-adr.py
+echo ""
+echo "=== pre-push: Running tests ==="
+"$PY" -m pytest -x --tb=short
+echo ""
+echo "pre-push checks passed."

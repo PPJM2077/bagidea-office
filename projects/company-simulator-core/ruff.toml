@@ -1,0 +1,53 @@
+# =============================================================================
+# Ruff — Python linter & formatter configuration
+# Docs: https://docs.astral.sh/ruff/settings/
+# =============================================================================
+
+target-version = "py312"
+line-length = 100
+
+[lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes (catches undefined names, unused imports, etc.)
+    "I",    # isort (import ordering)
+    "N",    # pep8-naming
+    "UP",   # pyupgrade (modernise syntax for 3.12+)
+    "B",    # flake8-bugbear (common bugs / design smells)
+    "SIM",  # flake8-simplify (simplify expressions)
+    "C4",   # flake8-comprehensions
+    "A",    # flake8-builtins (shadowing built-ins)
+    "S",    # flake8-bandit (security lint)
+    "T20",  # flake8-print (stray print() calls)
+]
+
+ignore = [
+    # FastAPI Depends() / Pydantic validators commonly use callables as
+    # default args — this is intentional, not a bug.
+    "B008",
+
+    # Only flag print() outside tests (per-file-ignores handle tests).
+    # This isn't needed as a global ignore, just clarity that tests bypass it.
+]
+
+[lint.per-file-ignores]
+"tests/**" = [
+    "S101",   # assert allowed in tests
+    "T20",    # print() allowed in test output / debug helpers
+]
+"**/__init__.py" = [
+    "F401",   # unused import — common in __init__.py re-exports
+]
+
+[lint.pydocstyle]
+convention = "google"
+
+[format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = true
+
+# ── Isort (import sorting) ──────────────────────────────────────────
+[lint.isort]
+known-first-party = ["app"]

@@ -1,0 +1,24 @@
+# Ruff configuration — Company Simulator
+# Enforces rules that catch real bugs, not style noise. Style/formatting is
+# handled by `ruff format` separately and does not block the commit gate.
+
+target-version = "py312"
+line-length = 100
+
+[lint]
+# Select only rule classes that flag genuine defects:
+#   E  = pycodestyle errors (E9xx = syntax/indentation that breaks the file)
+#   F  = pyflakes (unused imports, undefined names, redefinitions, unused vars)
+select = ["E9", "F"]
+
+# F401 (unused import) is auto-fixable and safe; we still surface it so it
+# doesn't accumulate, but `ruff check --fix` clears it without manual work.
+# F841 (unused local var) catches dead code in the gate scripts themselves.
+# F821 (undefined name) catches real NameError-class bugs.
+# F811 (redefinition) catches shadowed/overwritten names.
+unfixable = []  # nothing -- let --fix handle everything it safely can
+
+[lint.per-file-ignores]
+# Test scaffolding imports pytest for fixtures; allow unused import of pytest
+# in test files so the convention "import pytest" stays optional.
+"tests/**" = []

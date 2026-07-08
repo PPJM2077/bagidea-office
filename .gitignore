@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+node_modules/
+.env
+.env.local
+*.log
+office-now.png
+.DS_Store
+Thumbs.db
+memory/
+.claude/memories/

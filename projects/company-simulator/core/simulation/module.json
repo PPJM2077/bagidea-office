@@ -1,0 +1,28 @@
+{
+  "name": "@company-simulator/simulation",
+  "version": "0.1.0",
+  "type": "core",
+  "layer": "core",
+  "exports": [
+    "SimulationClock",
+    "TickEngine",
+    "TickContext",
+    "SimTickStarted",
+    "SimTickCompleted",
+    "SimEvent",
+    "create_tick_started",
+    "create_tick_completed",
+    "create_sim_event"
+  ],
+  "dependencies": {
+    "@company-simulator/types": ">=0.1.0",
+    "@company-simulator/domain": ">=0.1.0",
+    "@company-simulator/engine": ">=0.1.0",
+    "@company-simulator/ports": ">=0.1.0"
+  },
+  "health": {
+    "maxPublicExports": 20,
+    "maxCyclomaticComplexity": 12,
+    "testCoverageRequired": 90
+  }
+}

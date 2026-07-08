@@ -1,0 +1,16 @@
+{
+  "name": "@company-simulator/engine",
+  "version": "0.1.0",
+  "type": "core",
+  "layer": "core",
+  "exports": [],
+  "dependencies": {
+    "@company-simulator/types": ">=0.1.0",
+    "@company-simulator/domain": ">=0.1.0"
+  },
+  "health": {
+    "maxPublicExports": 25,
+    "maxCyclomaticComplexity": 15,
+    "testCoverageRequired": 90
+  }
+}

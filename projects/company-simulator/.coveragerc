@@ -1,0 +1,114 @@
+# =============================================================================
+# Company Simulator — Coverage Configuration
+# Reference: qa-standards.md §7.2 (Coverage Thresholds)
+#
+# Thresholds (per qa-standards §7.2):
+#   Overall project .......... 60%  (stretch: 75%)
+#   New code (feature) ....... 70%  (stretch: 85%)
+#   Business logic ........... 80%  (stretch: 95%)
+#   API endpoints ............ 75%  (stretch: 90%)
+#   UI components ............ 60%  (stretch: 80%)
+# =============================================================================
+
+[run]
+# ─── Source to measure ──────────────────────────────────────────────────────
+source = .
+include =
+    app/**/*.py
+    core/**/*.py
+    api/**/*.py
+    services/**/*.py
+    agents/**/*.py
+
+# ─── Exclude from coverage ──────────────────────────────────────────────────
+omit =
+    # Third-party / generated
+    */migrations/*
+    */venv/*
+    */.venv/*
+    */site-packages/*
+
+    # Entry points / scripts (tested via integration)
+    */main.py
+    */cli.py
+    */manage.py
+    */asgi.py
+    */wsgi.py
+
+    # Config and setup files
+    */settings.py
+    */config.py
+    */conf.py
+    */setup.py
+
+    # Test files themselves
+    tests/*
+    */test_*.py
+    *_test.py
+
+    # Legacy / deprecated
+    */legacy/*
+    */deprecated/*
+
+    # Generated code
+    */pb/*
+    */proto/*
+
+[report]
+# ─── Output format ──────────────────────────────────────────────────────────
+show_missing = true
+skip_empty = true
+skip_covered = false
+precision = 2
+sort = Name
+
+# ─── Exclusion markers (lines containing these are excluded) ────────────────
+exclude_lines =
+    # Standard coverage pragmas
+    pragma: no cover
+    pragma: nocover
+
+    # Type-only code paths
+    if TYPE_CHECKING:
+    if False:
+    if 0:
+
+    # Debug / development-only
+    if __debug__:
+    if DEBUG:
+    if settings.DEBUG:
+
+    # Abstract / unimplemented
+    raise NotImplementedError
+    raise NotImplemented
+    raise NotImplementedError()
+
+    # Should never happen (defensive)
+    raise AssertionError
+    assert False
+    assert False,
+
+    # Unreachable (formal)
+    def __repr__
+    def __str__
+    def __len__
+    def __hash__
+
+    # No-op error paths
+    pass
+
+[html]
+# ─── HTML report settings ───────────────────────────────────────────────────
+directory = htmlcov
+title = Company Simulator Coverage Report
+skip_covered = false
+
+[xml]
+# ─── XML output (for CI) ───────────────────────────────────────────────────
+output = coverage.xml
+
+# ─── Path correction (for CI) ───────────────────────────────────────────────
+[paths]
+source =
+    .
+    app/

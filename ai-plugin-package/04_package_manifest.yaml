@@ -1,0 +1,1458 @@
+# =============================================================================
+# AI Quant Office — Package Manifest v1.0
+# =============================================================================
+# This manifest defines the AI-native package for the Autonomous Quant
+# Investment Operating System (AQIOS). Every module is designed for
+# AI-to-AI consumption, with explicit input/output schemas, capability
+# declarations, and dependency graphs.
+# =============================================================================
+
+package:
+  id: "io.quantoffice.aqios"
+  name: "AI Quant Office OS (AQIOS)"
+  version: "1.0.0"
+  release: "2026-07-08"
+  license: "Proprietary — AI Quant Office"
+  author: "AI Quant Office Foundation"
+
+  description:
+    short: >
+      Autonomous Quant Investment Operating System — an AI-native company OS
+      that manages research, trading, risk, portfolio, and self-improvement
+      through a multi-agent organizational architecture.
+    long: >
+      AQIOS is not a trading bot. It is an AI operating system that functions
+      as an entire investment firm — with AI employees organized into
+      departments (Research, Trading, Risk, Portfolio, Technology, Knowledge),
+      each with defined roles, permissions, KPIs, budgets, and communication
+      channels. The system operates under an AI Constitution, uses an
+      Event-Driven Communication Bus, and supports Plugin-based extensibility
+      for strategies, brokers, AI providers, and knowledge packs. Every
+      decision is explainable, replayable, and governed by multi-level
+      approval workflows.
+
+  tags:
+    # Domain tags
+    - quant
+    - trading
+    - ai-company
+    - multi-agent
+    - portfolio-management
+    - risk-management
+    - investment-os
+
+    # Architecture tags
+    - event-driven
+    - plugin-architecture
+    - knowledge-graph
+    - rag
+    - modular-monolith
+    - simulation-first
+
+    # AI ecosystem tags
+    - claude-compatible
+    - openai-compatible
+    - gemini-compatible
+    - deepseek-compatible
+    - local-ai-compatible
+
+  # ===========================================================================
+  # Module Registry
+  # ===========================================================================
+  # Every module in the system. Each declares its role, dependencies,
+  # AI roles served, and the exact interfaces it exposes.
+  # ===========================================================================
+  modules:
+
+    # -------------------------------------------------------------------------
+    # Core Layer — Foundation modules with zero domain knowledge
+    # -------------------------------------------------------------------------
+
+    - id: "core.kernel"
+      name: "Office Kernel"
+      version: "1.0.0"
+      layer: "core"
+      criticality: "system"
+      description: >
+        The AI Operating System kernel. Manages AI identity, lifecycle,
+        permissions, roles, departments, organization chart, presence,
+        session management, and authentication. Every module in the
+        system depends on the Kernel.
+      depends_on: []
+      provides:
+        - identity-registry
+        - permission-manager
+        - role-engine
+        - department-tree
+        - presence-service
+        - session-manager
+        - auth-provider
+      ai_roles_served: [all]
+
+    - id: "core.communication"
+      name: "AI Communication Engine"
+      version: "1.0.0"
+      layer: "core"
+      criticality: "system"
+      description: >
+        Event-driven communication bus (AICB) that enables all AI agents
+        to communicate asynchronously. Supports Chat (DM/Channel/Thread),
+        Meeting (Scheduled/Ad-hoc), Broadcast (One-to-Many/All-hands),
+        Debate (Structured argumentation), Committee (Voting/Approval),
+        Whisper (Private DM), and Conversation Memory with full
+        searchability and replay capability.
+      depends_on:
+        - core.kernel
+        - core.event-bus
+      provides:
+        - chat-service
+        - meeting-scheduler
+        - debate-protocol
+        - committee-manager
+        - broadcast-service
+        - conversation-memory
+      ai_roles_served: [all]
+
+    - id: "core.event-bus"
+      name: "Event Bus"
+      version: "1.0.0"
+      layer: "core"
+      criticality: "system"
+      description: >
+        Async event backbone (NATS/Redis Streams). All modules publish
+        and subscribe to typed events. Enables loose coupling: no AI
+        agent calls another directly — all communication flows through
+        typed channels.
+      depends_on: []
+      provides:
+        - event-pub-sub
+        - typed-channels
+        - event-schema-registry
+        - delivery-guarantees
+      ai_roles_served: [all]
+
+    - id: "core.memory"
+      name: "Company Memory System"
+      version: "1.0.0"
+      layer: "core"
+      criticality: "system"
+      description: >
+        Multi-tier memory architecture: Short-term (session context),
+        Long-term (persistent knowledge), Episodic (event timeline),
+        Semantic (concept relationships), Procedural (SOPs/playbooks),
+        Team Memory (shared department context), Company Memory
+        (organizational-wide knowledge). Supports compression, archive,
+        replay, search, and garbage collection.
+      depends_on:
+        - core.kernel
+        - core.event-bus
+      provides:
+        - memory-store
+        - memory-search
+        - timeline-replay
+        - memory-compression
+        - knowledge-graph-store
+      ai_roles_served: [all]
+
+    - id: "core.task"
+      name: "AI Task System"
+      version: "1.0.0"
+      layer: "core"
+      criticality: "system"
+      description: >
+        Jira-like task management for AI employees. Tasks, Epics, Sprints,
+        Queues, Assignment (skill-based), Priority, Deadline tracking,
+        Code Review workflow, Approval gates, and automatic dependency
+        resolution. Every task is traceable to an AI agent and a decision.
+      depends_on:
+        - core.kernel
+        - core.communication
+      provides:
+        - task-crud
+        - sprint-manager
+        - queue-dispatcher
+        - skill-assigner
+        - review-pipeline
+        - dependency-resolver
+      ai_roles_served: [all]
+
+    - id: "core.governance"
+      name: "Company Governance Engine"
+      version: "1.0.0"
+      layer: "core"
+      criticality: "system"
+      description: >
+        The AI Constitution — immutable rules governing all AI behavior.
+        Includes Company Constitution (core values, capital protection),
+        Policies (risk limits, trading rules), SOPs (standard procedures),
+        Committee system (multi-party approval), Voting engine (weighted
+        consensus), Audit trail (immutable log), Proposal workflow
+        (evidence → discussion → simulation → approval → canary →
+        production), and Change Control Board (4-level change authority).
+      depends_on:
+        - core.kernel
+        - core.communication
+        - core.memory
+      provides:
+        - constitution-store
+        - policy-engine
+        - committee-orchestrator
+        - voting-engine
+        - proposal-workflow
+        - change-control-board
+        - audit-log
+      ai_roles_served: [all]
+
+    - id: "core.gateway"
+      name: "AI Gateway"
+      version: "1.0.0"
+      layer: "core"
+      criticality: "system"
+      description: >
+        Multi-provider AI Gateway supporting OpenAI, Anthropic, Google,
+        xAI, DeepSeek, Ollama, LM Studio, vLLM, OpenRouter, and custom
+        providers. Role-based routing (tasks route to best provider per
+        capability), automatic fallback (provider failure → next best),
+        cost management (budget caps per provider per task type),
+        token tracking, latency monitoring, and parallel execution
+        (ensemble voting across providers).
+      depends_on:
+        - core.kernel
+      provides:
+        - provider-registry
+        - smart-router
+        - fallback-manager
+        - cost-controller
+        - health-monitor
+        - ensemble-executor
+      ai_roles_served: [all]
+
+    - id: "core.plugin"
+      name: "Plugin SDK & Marketplace"
+      version: "1.0.0"
+      layer: "core"
+      criticality: "system"
+      description: >
+        Complete plugin system for extending the AI Office. Plugin types:
+        AI Employee, Department, Tool, Knowledge Pack, Workflow, Strategy,
+        Broker, Indicator, UI Widget, Theme. Plugin lifecycle (install,
+        enable, disable, update, rollback). Dependency resolution,
+        sandbox isolation, version management.
+      depends_on:
+        - core.kernel
+        - core.event-bus
+      provides:
+        - plugin-registry
+        - plugin-sandbox
+        - dependency-manager
+        - version-controller
+        - marketplace-api
+      ai_roles_served: [all]
+
+    - id: "core.workflow"
+      name: "Workflow Engine"
+      version: "1.0.0"
+      layer: "core"
+      criticality: "system"
+      description: >
+        Visual workflow engine (like n8n) for defining AI collaboration
+        pipelines. Drag-and-drop workflow builder, state machine execution,
+        branching, parallel lanes, human-in-the-loop gates, retry policies,
+        timeout controls, and workflow marketplace for sharing.
+      depends_on:
+        - core.kernel
+        - core.event-bus
+        - core.task
+      provides:
+        - workflow-builder
+        - workflow-executor
+        - state-machine
+        - human-gate
+        - workflow-marketplace
+      ai_roles_served: [all]
+
+    # -------------------------------------------------------------------------
+    # Knowledge Layer — Information management and reasoning
+    # -------------------------------------------------------------------------
+
+    - id: "knowledge.os"
+      name: "Knowledge Operating System (KOS)"
+      version: "1.0.0"
+      layer: "knowledge"
+      criticality: "high"
+      description: >
+        Enterprise knowledge management system. Multi-tier knowledge
+        pyramid (Tier 0-4): Immutable core rules, Official documentation,
+        Internal research/backtests, Academic papers/sources, Community
+        references. RAG pipeline, Knowledge Graph (market entities,
+        relationships, causal chains), Citation engine (every claim
+        must cite source), Fact Checker (hallucination detection),
+        Knowledge expiration, Confidence calibration, and Auto-documentation.
+      depends_on:
+        - core.kernel
+        - core.memory
+        - core.gateway
+      provides:
+        - knowledge-pyramid
+        - rag-pipeline
+        - knowledge-graph
+        - citation-engine
+        - fact-checker
+        - confidence-calibrator
+      ai_roles_served: [all]
+
+    - id: "knowledge.wiki"
+      name: "Company Wiki"
+      version: "1.0.0"
+      layer: "knowledge"
+      criticality: "high"
+      description: >
+        Internal Confluence-like wiki. Every AI reads and writes
+        documentation, research notes, SOPs, decision logs, and
+        playbooks. Supports version history, cross-references,
+        search, and role-based access.
+      depends_on:
+        - knowledge.os
+        - core.memory
+      provides:
+        - wiki-store
+        - wiki-search
+        - version-history
+        - access-control
+      ai_roles_served: [all]
+
+    # -------------------------------------------------------------------------
+    # AI Employee Layer — Workforce management
+    # -------------------------------------------------------------------------
+
+    - id: "employee.system"
+      name: "AI Employee System"
+      version: "1.0.0"
+      layer: "employee"
+      criticality: "high"
+      description: >
+        Full employee lifecycle management for AI agents. Resume (skills,
+        experience, certifications), Performance (KPI tracking, accuracy,
+        speed, cost), Reputation (trust score, weighted by track record),
+        Budget (per-agent API cost tracking), Promotion (performance-based
+        advancement), Training (university courses, certifications),
+        Mentorship (senior-junior pairing), and Retirement (archival of
+        old models).
+      depends_on:
+        - core.kernel
+        - core.task
+        - core.governance
+      provides:
+        - employee-registry
+        - skill-inventory
+        - reputation-scorer
+        - kpi-dashboard
+        - training-manager
+        - promotion-engine
+      ai_roles_served: [all]
+
+    - id: "employee.hr"
+      name: "AI HR & Recruitment"
+      version: "1.0.0"
+      layer: "employee"
+      criticality: "medium"
+      description: >
+        Automated recruitment pipeline for new AI models. When a new
+        model releases, HR AI runs benchmark tests (accuracy, latency,
+        cost, coding, reasoning), paper test (domain knowledge),
+        interview (structured assessment), and onboards if passed.
+        Also manages inter-department transfers and role reassignment.
+      depends_on:
+        - employee.system
+        - core.gateway
+        - core.governance
+      provides:
+        - recruitment-pipeline
+        - benchmark-runner
+        - interview-orchestrator
+        - onboarding-workflow
+      ai_roles_served: [all]
+
+    # -------------------------------------------------------------------------
+    # Intelligence Layer — Trading and quant analysis
+    # -------------------------------------------------------------------------
+
+    - id: "intel.market"
+      name: "Market Intelligence Engine"
+      version: "1.0.0"
+      layer: "intelligence"
+      criticality: "high"
+      description: >
+        Multi-source market analysis. Technical analysis (trend, SMC, ICT,
+        VWAP, RSI, Volume, Order Flow, Market Structure, Liquidity),
+        Macro analysis (economic indicators, central bank policy, rates),
+        News & Sentiment (real-time news, social media, economic calendar,
+        government announcements), Regime detection (Trending/Ranging/
+        Expanding/Compressing/News-driven/Panic/Recovery/Holiday),
+        and Cross-asset correlation analysis.
+      depends_on:
+        - knowledge.os
+        - core.event-bus
+        - core.gateway
+      provides:
+        - technical-analysis
+        - macro-analysis
+        - news-sentiment
+        - regime-detector
+        - correlation-analyzer
+        - market-heatmap
+      ai_roles_served:
+        - market-analyst
+        - strategy-ai
+        - portfolio-manager
+        - risk-manager
+
+    - id: "intel.research"
+      name: "Quant Research Engine"
+      version: "1.0.0"
+      layer: "intelligence"
+      criticality: "high"
+      description: >
+        Full research lifecycle: Idea generation → Paper reading →
+        Hypothesis formulation → Backtest → Walk Forward → Monte Carlo →
+        Optimization → Shadow Mode → Review → Production. Includes
+        Experiment Registry (every experiment tracked with ID, parameters,
+        results), Feature Engineering, Factor Analysis (Momentum, Value,
+        Carry, Quality, Volatility), Strategy Genome (DNA of each strategy
+        for crossover breeding), and Research Pipeline (automated paper
+        ingestion, summarization, extraction, backtesting).
+      depends_on:
+        - knowledge.os
+        - core.task
+        - core.gateway
+      provides:
+        - backtest-engine
+        - walk-forward-analyzer
+        - monte-carlo-simulator
+        - optimization-engine
+        - experiment-registry
+        - factor-analyzer
+        - strategy-genome
+      ai_roles_served:
+        - research-director
+        - strategy-ai
+        - ml-researcher
+
+    - id: "intel.strategy"
+      name: "Strategy Engine"
+      version: "1.0.0"
+      layer: "intelligence"
+      criticality: "high"
+      description: >
+        Strategy lifecycle management. Strategy SDK (standard interface
+        for all strategies: initialize, analyze, score, entry, exit,
+        manage, cleanup), Strategy Catalog (versioned library with
+        health/risk/performance scores), Strategy Evolution (genetic
+        algorithm breeding), Dynamic Allocation (performance-based
+        weight adjustment), Kill Switch (auto-disable on metric
+        degradation), Auto Retirement (archive decaying strategies),
+        Canary Deployment (gradual capital allocation), and
+        Hot Reload (add/remove strategies without restart).
+      depends_on:
+        - intel.research
+        - intel.risk
+        - core.event-bus
+        - core.plugin
+      provides:
+        - strategy-sdk
+        - strategy-catalog
+        - dynamic-allocator
+        - kill-switch
+        - canary-deployer
+        - evolution-engine
+      ai_roles_served:
+        - strategy-ai
+        - portfolio-manager
+        - risk-manager
+
+    - id: "intel.decision"
+      name: "Decision Engine"
+      version: "1.0.0"
+      layer: "intelligence"
+      criticality: "critical"
+      description: >
+        Multi-agent consensus and trade decision system. Aggregates
+        signals from all analysis modules (technical, macro, news, risk,
+        portfolio), computes weighted confidence scores, runs Devil's
+        Advocate (adversarial validation), generates explainable
+        decision reports with evidence traceability, and routes
+        approved decisions to execution. Supports multiple consensus
+        modes: Simple Vote, Confidence-Weighted, Debate-Driven,
+        and Committee-Approved.
+      depends_on:
+        - intel.market
+        - intel.strategy
+        - intel.risk
+        - core.communication
+        - core.governance
+      provides:
+        - signal-aggregator
+        - confidence-scorer
+        - consensus-orchestrator
+        - devils-advocate
+        - explainability-report
+        - decision-router
+      ai_roles_served:
+        - ceo-ai
+        - portfolio-manager
+        - strategy-ai
+
+    # -------------------------------------------------------------------------
+    # Risk Layer — Capital protection and position management
+    # -------------------------------------------------------------------------
+
+    - id: "intel.risk"
+      name: "Risk Engine"
+      version: "1.0.0"
+      layer: "intelligence"
+      criticality: "critical"
+      description: >
+        Comprehensive risk management across 12 dimensions:
+        Infrastructure Risk (heartbeat, watchdog, failover),
+        Market Risk (VaR, CVaR, drawdown, exposure),
+        Position Risk (position sizing, margin, leverage),
+        Correlation Risk (correlation breakdown detection),
+        Liquidity Risk (spread monitoring, liquidity collapse),
+        News Shock (event-based safe mode), Black Swan (emergency
+        protocols), Flash Crash (anomalous price movement detection),
+        Strategy Decay (performance degradation monitoring),
+        AI Confidence Calibration (accuracy vs. confidence audit),
+        Human Override (manual halt, safe mode, force close),
+        and Audit Engine (immutable decision log).
+      depends_on:
+        - core.event-bus
+        - core.governance
+        - knowledge.os
+      provides:
+        - position-sizer
+        - drawdown-monitor
+        - var-calculator
+        - exposure-manager
+        - correlation-tracker
+        - flash-crash-detector
+        - news-shock-responder
+        - safe-mode-controller
+        - emergency-orchestrator
+      ai_roles_served:
+        - risk-manager
+        - portfolio-manager
+        - ceo-ai
+        - broker-ai
+
+    - id: "intel.portfolio"
+      name: "Portfolio Engine"
+      version: "1.0.0"
+      layer: "intelligence"
+      criticality: "critical"
+      description: >
+        Global Portfolio Manager (GPM) — treats all accounts, brokers,
+        and assets as a single unified portfolio. Multi-asset, multi-broker,
+        multi-account, multi-currency support. Analytics: Sharpe, Sortino,
+        Kelly Criterion, Risk Parity, Mean-Variance, CVaR optimization.
+        Features: Cross-Broker Trailing, Profit Lock Engine, Scenario
+        Simulation (5+ strategies evaluated), Capital Balancer (rebalance
+        across brokers), Universal Stop/Take Profit (portfolio-level),
+        Portfolio Recovery (optimal close/hold decisions), and
+        Dynamic Profit Lock (adaptive lock percentage by trend strength).
+      depends_on:
+        - intel.risk
+        - intel.market
+        - core.event-bus
+        - knowledge.os
+      provides:
+        - unified-portfolio-view
+        - portfolio-optimizer
+        - profit-lock-engine
+        - scenario-simulator
+        - capital-balancer
+        - cross-broker-trailing
+        - portfolio-recovery
+      ai_roles_served:
+        - portfolio-manager
+        - risk-manager
+        - ceo-ai
+        - broker-ai
+
+    # -------------------------------------------------------------------------
+    # Execution Layer — Order routing and broker interaction
+    # -------------------------------------------------------------------------
+
+    - id: "execution.core"
+      name: "Execution Engine"
+      version: "1.0.0"
+      layer: "execution"
+      criticality: "critical"
+      description: >
+        Order execution with intelligent routing. Supports multiple
+        brokers (MT5 via MetaTrader5 Python API, REST brokers, FIX
+        protocol), order types (market, limit, stop, OCO, trailing),
+        smart order routing (best execution across brokers), retry
+        logic with exponential backoff, slippage control, latency
+        optimization, partial fill handling, and execution journaling.
+        Every order is traceable to the originating decision and AI agents.
+      depends_on:
+        - core.governance
+        - intel.decision
+        - intel.risk
+        - core.event-bus
+      provides:
+        - order-router
+        - broker-adapter-framework
+        - execution-monitor
+        - slippage-controller
+        - retry-manager
+        - order-journal
+      ai_roles_served:
+        - execution-ai
+        - broker-ai
+        - portfolio-manager
+
+    - id: "execution.broker"
+      name: "Broker Integration Framework"
+      version: "1.0.0"
+      layer: "execution"
+      criticality: "high"
+      description: >
+        Unified broker adapter layer. Each broker implements standard
+        interface: connect, disconnect, account_info, place_order,
+        modify_order, cancel_order, get_positions, get_orders,
+        get_history. Includes Broker Health Score (latency, fill rate,
+        requote rate, spread), automatic failover, compliance rules
+        (FIFO, hedging, stop level, margin rules per broker), and
+        multi-account management.
+      depends_on:
+        - execution.core
+        - core.event-bus
+      provides:
+        - broker-registry
+        - broker-health-monitor
+        - adapter-sdk
+        - compliance-checker
+        - multi-account-manager
+      ai_roles_served:
+        - broker-ai
+        - execution-ai
+
+    # -------------------------------------------------------------------------
+    # Monitoring Layer — Observability and health
+    # -------------------------------------------------------------------------
+
+    - id: "monitor.system"
+      name: "System Health & Monitoring"
+      version: "1.0.0"
+      layer: "monitoring"
+      criticality: "high"
+      description: >
+        Full observability stack. System metrics (CPU, RAM, GPU, disk,
+        network), AI metrics (hallucination rate, accuracy, latency, cost,
+        confidence calibration), Trading metrics (win rate, RR, drawdown,
+        exposure, Sharpe), Alerts (tiered notification: log → email →
+        Telegram → phone), Self-healing (auto-restart crashed processes,
+        reconnect disconnected brokers), and AI Observatory (live view
+        of every AI agent's status, task, and thinking process).
+      depends_on:
+        - core.event-bus
+        - core.kernel
+      provides:
+        - system-metrics-collector
+        - ai-health-monitor
+        - trading-metrics-dashboard
+        - alert-router
+        - self-healing-orchestrator
+        - observatory-feed
+      ai_roles_served:
+        - devops-ai
+        - cto-ai
+        - ceo-ai
+
+    # -------------------------------------------------------------------------
+    # Simulation Layer — Digital twin and what-if analysis
+    # -------------------------------------------------------------------------
+
+    - id: "simulation.core"
+      name: "Company Simulator & Digital Twin"
+      version: "1.0.0"
+      layer: "simulation"
+      criticality: "high"
+      description: >
+        Simulation-First Architecture. Every change (new AI, strategy,
+        prompt, money management, office structure, model upgrade) must
+        pass through simulation before production. Includes Digital Twin
+        (real-time mirror of the production office), Scenario Generator
+        (10,000+ market scenarios for stress testing), Time Machine
+        (tick-by-tick replay with full AI reasoning), What-If Engine
+        (evaluate alternative decisions), and Sandbox (isolated
+        environment for experiments). Ensures stability while
+        enabling continuous evolution.
+      depends_on:
+        - core.kernel
+        - core.event-bus
+        - knowledge.os
+      provides:
+        - digital-twin
+        - scenario-generator
+        - time-machine-replay
+        - what-if-engine
+        - sandbox-manager
+      ai_roles_served: [all]
+
+    # -------------------------------------------------------------------------
+    # Self-Improvement Layer — Evolution and learning
+    # -------------------------------------------------------------------------
+
+    - id: "evolution.core"
+      name: "Self-Improvement Engine"
+      version: "1.0.0"
+      layer: "evolution"
+      criticality: "medium"
+      description: >
+        Continuous self-evolution of the entire AI Office. Weekly CEO
+        review meetings (What went well? What failed? What should
+        improve? Which AI needs training? Should we hire/retire?),
+        Auto Proposal generation (AI identifies improvements and
+        submits proposals with evidence), A/B testing framework
+        (Shadow Mode for parallel comparison), Performance Regression
+        detection, Knowledge refinement (automatic update of outdated
+        knowledge), and Company Evolution Engine (process improvement
+        at organizational level).
+      depends_on:
+        - simulation.core
+        - employee.system
+        - core.governance
+        - core.communication
+      provides:
+        - evolution-orchestrator
+        - auto-proposal-generator
+        - ab-test-framework
+        - regression-detector
+        - knowledge-refiner
+        - weekly-review-automation
+      ai_roles_served:
+        - ceo-ai
+        - research-director
+        - cto-ai
+
+    # -------------------------------------------------------------------------
+    # UI & Experience Layer
+    # -------------------------------------------------------------------------
+
+    - id: "ux.dashboard"
+      name: "Founder Dashboard"
+      version: "1.0.0"
+      layer: "ux"
+      criticality: "high"
+      description: >
+        Multi-level dashboard system. Beginner Mode (setup wizard,
+        10-minute onboarding), Advanced Mode (AI management, strategy
+        config, risk tuning), Expert/Developer Mode (pipeline graphs,
+        event logs, AI inspector, prompt debugger, timeline replay).
+        Components: Home (portfolio summary, PnL, risk, AI status),
+        Market Center (heatmap, AI confidence per symbol, regime),
+        AI Center (provider health, cost, latency, accuracy per model),
+        Broker Center (spread comparison, execution quality),
+        Strategy Center (on/off per strategy, weight, health score),
+        Portfolio Center (unified view, correlation, exposure),
+        AI Chat (conversation with any AI or the whole company),
+        Journal (every trade with screenshot, reason, indicators, PnL),
+        Workflow Builder (drag-and-drop), Plugin Store, and
+        Search Everything (Ctrl+K).
+      depends_on:
+        - core.event-bus
+        - core.kernel
+        - monitor.system
+      provides:
+        - dashboard-home
+        - market-center-ui
+        - ai-center-ui
+        - strategy-center-ui
+        - portfolio-center-ui
+        - workflow-builder-ui
+        - plugin-store-ui
+        - global-search
+      ai_roles_served:
+        - founder
+        - ceo-ai
+
+    - id: "ux.collaboration"
+      name: "AI Collaboration UI"
+      version: "1.0.0"
+      layer: "ux"
+      criticality: "medium"
+      description: >
+        Real-time collaboration interfaces. AI Presence (live status
+        of every AI — working, thinking, meeting, available),
+        AI Round Table (virtual meeting room with all agents visible),
+        AI Whiteboard (shared visual workspace for diagrams and analysis),
+        AI Calendar (scheduled meetings, economic events, tasks),
+        AI Mail (auto-generated reports from Research AI to CEO),
+        AI Phone (priority interrupt for urgent matters), Meeting Replay
+        (recorded AI meetings), and Office Map (navigable 3D/2D layout).
+      depends_on:
+        - core.communication
+        - core.kernel
+        - ux.dashboard
+      provides:
+        - presence-view
+        - round-table-room
+        - whiteboard-canvas
+        - calendar-view
+        - mail-inbox
+        - meeting-replay
+        - office-map
+      ai_roles_served:
+        - founder
+        - all-ai
+
+  # ===========================================================================
+  # Dependency Graph Summary
+  # ===========================================================================
+  # Layer order (bottom to top):
+  #
+  #    MONITORING  SIMULATION  EVOLUTION        (observability / growth)
+  #         |           |
+  #    EXECUTION    INTELLIGENCE                 (trading & analysis)
+  #         |           |
+  #    EMPLOYEE    KNOWLEDGE                     (people & information)
+  #         \         /
+  #          CORE LAYER                          (kernel, event bus, memory,
+  #                                               task, governance, gateway,
+  #                                               plugin, workflow)
+  #
+  # Rule: Modules may only depend on modules in the same or lower layer.
+  #        No circular dependencies between modules.
+  #        Every module declares explicit dependencies.
+  # ===========================================================================
+
+  dependencies:
+    external:
+      # AI & ML
+      - id: "openai-api"
+        version: ">=1.0"
+        type: "api"
+        license: "commercial"
+      - id: "anthropic-api"
+        version: ">=1.0"
+        type: "api"
+        license: "commercial"
+      - id: "google-ai-api"
+        version: ">=1.0"
+        type: "api"
+        license: "commercial"
+      - id: "deepseek-api"
+        version: ">=1.0"
+        type: "api"
+        license: "commercial"
+      - id: "ollama"
+        version: ">=0.1"
+        type: "local"
+        license: "mit"
+
+      # Infrastructure
+      - id: "nats"
+        version: ">=2.0"
+        type: "event-bus"
+        license: "apache-2.0"
+      - id: "redis"
+        version: ">=7.0"
+        type: "cache-streams"
+        license: "bsd-3"
+      - id: "qdrant"
+        version: ">=1.0"
+        type: "vector-db"
+        license: "apache-2.0"
+      - id: "postgresql"
+        version: ">=15"
+        type: "database"
+        license: "postgresql"
+      - id: "duckdb"
+        version: ">=0.8"
+        type: "analytics-db"
+        license: "mit"
+
+      # Framework
+      - id: "fastapi"
+        version: ">=0.100"
+        type: "api-framework"
+        license: "mit"
+      - id: "langgraph"
+        version: ">=0.1"
+        type: "ai-workflow"
+        license: "mit"
+      - id: "llamaindex"
+        version: ">=0.9"
+        type: "rag-framework"
+        license: "mit"
+      - id: "optuna"
+        version: ">=3.0"
+        type: "optimization"
+        license: "mit"
+      - id: "pytorch"
+        version: ">=2.0"
+        type: "ml-framework"
+        license: "bsd"
+      - id: "lightgbm"
+        version: ">=4.0"
+        type: "ml-model"
+        license: "mit"
+
+      # Frontend
+      - id: "react"
+        version: ">=18"
+        type: "ui-framework"
+        license: "mit"
+      - id: "nextjs"
+        version: ">=14"
+        type: "web-framework"
+        license: "mit"
+      - id: "echarts"
+        version: ">=5.0"
+        type: "charting"
+        license: "apache-2.0"
+      - id: "shadcn-ui"
+        version: ">=0.5"
+        type: "component-library"
+        license: "mit"
+
+      # Auth & Security
+      - id: "keycloak"
+        version: ">=22"
+        type: "auth-provider"
+        license: "apache-2.0"
+
+    internal:
+      - core.kernel
+      - core.communication
+      - core.event-bus
+      - core.memory
+      - core.task
+      - core.governance
+      - core.gateway
+      - core.plugin
+      - core.workflow
+      - knowledge.os
+      - knowledge.wiki
+      - employee.system
+      - employee.hr
+      - intel.market
+      - intel.research
+      - intel.strategy
+      - intel.decision
+      - intel.risk
+      - intel.portfolio
+      - execution.core
+      - execution.broker
+      - monitor.system
+      - simulation.core
+      - evolution.core
+      - ux.dashboard
+      - ux.collaboration
+
+  # ===========================================================================
+  # AI Role Registry
+  # ===========================================================================
+  # Every AI role in the organization, with department, permissions,
+  # and required modules.
+  # ===========================================================================
+  roles:
+    - id: "ceo-ai"
+      name: "Chief Executive Officer AI"
+      department: "executive"
+      rank: 100
+      description: "Top-level AI executive — chairs meetings, approves decisions, manages department heads."
+      required_modules:
+        - [core.*]
+        - [knowledge.*]
+        - [intel.decision]
+        - [intel.portfolio]
+        - [intel.risk]
+        - [evolution.core]
+      permissions:
+        - "decision:approve"
+        - "policy:propose"
+        - "employee:promote"
+        - "employee:hire"
+        - "emergency:declare"
+        - "budget:allocate"
+
+    - id: "cio-ai"
+      name: "Chief Investment Officer AI"
+      department: "investment"
+      rank: 90
+      description: "Heads investment strategy — selects strategies, allocates capital, oversees trading."
+      required_modules:
+        - [core.*]
+        - [intel.*]
+        - [execution.*]
+      permissions:
+        - "strategy:approve"
+        - "allocation:manage"
+        - "portfolio:oversee"
+        - "decision:escalate"
+
+    - id: "cro-ai"
+      name: "Chief Risk Officer AI"
+      department: "risk"
+      rank: 90
+      description: "Heads risk management — sets risk limits, monitors exposure, enforces constitution."
+      required_modules:
+        - [core.kernel]
+        - [core.governance]
+        - [intel.risk]
+        - [intel.portfolio]
+        - [knowledge.os]
+      permissions:
+        - "risk:set-limits"
+        - "trade:veto"
+        - "safe-mode:activate"
+        - "emergency:halt"
+        - "audit:view-all"
+
+    - id: "cfo-ai"
+      name: "Chief Financial Officer AI"
+      department: "finance"
+      rank: 85
+      description: "Manages budgets, costs, API expenditure, broker fees, and financial planning."
+      required_modules:
+        - [core.kernel]
+        - [core.gateway]
+        - [employee.system]
+        - [monitor.system]
+      permissions:
+        - "budget:view"
+        - "cost:optimize"
+        - "provider:switch"
+
+    - id: "cto-ai"
+      name: "Chief Technology Officer AI"
+      department: "technology"
+      rank: 90
+      description: "Heads technology — architecture, infrastructure, AI gateway, security."
+      required_modules:
+        - [core.*]
+        - [monitor.system]
+        - [simulation.core]
+        - [employee.hr]
+      permissions:
+        - "infrastructure:manage"
+        - "provider:register"
+        - "plugin:approve"
+        - "security:audit"
+        - "deployment:manage"
+
+    - id: "market-analyst"
+      name: "Market Analyst AI"
+      department: "investment"
+      rank: 60
+      description: "Analyzes markets — technical, macro, news, sentiment. Provides trade signals."
+      required_modules:
+        - [intel.market]
+        - [knowledge.os]
+        - [core.communication]
+      permissions:
+        - "signal:publish"
+        - "analysis:write"
+        - "knowledge:contribute"
+
+    - id: "risk-manager"
+      name: "Risk Manager AI"
+      department: "risk"
+      rank: 65
+      description: "Monitors and manages portfolio risk in real-time."
+      required_modules:
+        - [intel.risk]
+        - [intel.portfolio]
+        - [core.governance]
+      permissions:
+        - "risk:monitor"
+        - "position:size"
+        - "trade:advisory-veto"
+        - "safe-mode:recommend"
+
+    - id: "portfolio-manager"
+      name: "Portfolio Manager AI"
+      department: "investment"
+      rank: 75
+      description: "Manages the unified portfolio — allocation, rebalancing, profit locking."
+      required_modules:
+        - [intel.portfolio]
+        - [intel.risk]
+        - [intel.market]
+        - [intel.decision]
+      permissions:
+        - "portfolio:rebalance"
+        - "allocation:adjust"
+        - "profit:lock"
+        - "scenario:run"
+
+    - id: "research-director"
+      name: "Research Director AI"
+      department: "research"
+      rank: 75
+      description: "Heads quant research — backtesting, strategy development, paper analysis."
+      required_modules:
+        - [intel.research]
+        - [intel.strategy]
+        - [knowledge.os]
+        - [simulation.core]
+      permissions:
+        - "research:propose"
+        - "backtest:run"
+        - "strategy:design"
+        - "experiment:register"
+
+    - id: "strategy-ai"
+      name: "Strategy AI"
+      department: "research"
+      rank: 65
+      description: "Designs, implements, and optimizes trading strategies."
+      required_modules:
+        - [intel.strategy]
+        - [intel.research]
+        - [intel.market]
+      permissions:
+        - "strategy:modify"
+        - "strategy:version"
+        - "parameter:tune"
+
+    - id: "execution-ai"
+      name: "Execution AI"
+      department: "trading"
+      rank: 60
+      description: "Executes approved orders, manages order routing, monitors fills."
+      required_modules:
+        - [execution.*]
+        - [core.governance]
+      permissions:
+        - "order:place"
+        - "order:cancel"
+        - "broker:communicate"
+
+    - id: "broker-ai"
+      name: "Broker AI"
+      department: "trading"
+      rank: 55
+      description: "Manages broker connections, health monitoring, cost comparison."
+      required_modules:
+        - [execution.broker]
+        - [monitor.system]
+      permissions:
+        - "broker:monitor"
+        - "broker:switch"
+
+    - id: "news-ai"
+      name: "News & Sentiment AI"
+      department: "research"
+      rank: 50
+      description: "Monitors real-time news, economic calendar, social media sentiment."
+      required_modules:
+        - [intel.market]
+        - [knowledge.os]
+      permissions:
+        - "news:publish"
+        - "sentiment:report"
+        - "alert:raise"
+
+    - id: "compliance-ai"
+      name: "Compliance AI"
+      department: "audit"
+      rank: 60
+      description: "Ensures all actions comply with constitution, policies, and broker regulations."
+      required_modules:
+        - [core.governance]
+        - [execution.broker]
+        - [knowledge.os]
+      permissions:
+        - "compliance:audit"
+        - "policy:enforce"
+        - "trade:block"
+
+    - id: "documentation-ai"
+      name: "Documentation AI"
+      department: "knowledge"
+      rank: 45
+      description: "Creates and maintains all documentation — API refs, user guides, changelogs."
+      required_modules:
+        - [knowledge.wiki]
+        - [knowledge.os]
+        - [core.task]
+      permissions:
+        - "documentation:write"
+        - "documentation:review"
+
+    - id: "qa-ai"
+      name: "Quality Assurance AI"
+      department: "technology"
+      rank: 55
+      description: "Tests every module, strategy, and release before production deployment."
+      required_modules:
+        - [simulation.core]
+        - [core.task]
+        - [monitor.system]
+      permissions:
+        - "test:run"
+        - "release:approve"
+        - "bug:report"
+
+    - id: "architect-ai"
+      name: "Chief Architect AI"
+      department: "technology"
+      rank: 80
+      description: "Guards system architecture — prevents architectural drift, reviews all integrations."
+      required_modules:
+        - [core.*]
+        - [knowledge.os]
+      permissions:
+        - "architecture:review"
+        - "plugin:review"
+        - "dependency:approve"
+        - "standards:enforce"
+
+    - id: "devops-ai"
+      name: "DevOps AI"
+      department: "technology"
+      rank: 50
+      description: "Manages infrastructure, deployment, monitoring, and self-healing."
+      required_modules:
+        - [monitor.system]
+        - [core.kernel]
+      permissions:
+        - "infrastructure:monitor"
+        - "deployment:execute"
+        - "incident:respond"
+
+  # ===========================================================================
+  # Technology Registry
+  # ===========================================================================
+  # Every external technology mapped to its module, build-vs-buy decision,
+  # and current status.
+  # ===========================================================================
+  technology_registry:
+    - component: "Event Bus"
+      module: "core.event-bus"
+      decision: "buy"
+      technology: "NATS"
+      status: "stable"
+      alternatives: ["Redis Streams", "Kafka"]
+
+    - component: "Vector Database"
+      module: "knowledge.os"
+      decision: "buy"
+      technology: "Qdrant"
+      status: "stable"
+      alternatives: ["Milvus", "ChromaDB"]
+
+    - component: "RAG Pipeline"
+      module: "knowledge.os"
+      decision: "buy"
+      technology: "LlamaIndex"
+      status: "stable"
+      alternatives: ["Haystack", "LangChain"]
+
+    - component: "AI Workflow"
+      module: "core.workflow"
+      decision: "buy"
+      technology: "LangGraph"
+      status: "stable"
+      alternatives: ["CrewAI", "AutoGen"]
+
+    - component: "Database"
+      module: "core.kernel"
+      decision: "buy"
+      technology: "PostgreSQL + DuckDB"
+      status: "stable"
+      alternatives: ["SQLite", "TimescaleDB"]
+
+    - component: "Optimization"
+      module: "intel.research"
+      decision: "buy"
+      technology: "Optuna"
+      status: "stable"
+      alternatives: ["Hyperopt", "BayesianOptimization"]
+
+    - component: "ML Framework"
+      module: "intel.research"
+      decision: "buy"
+      technology: "PyTorch + LightGBM"
+      status: "stable"
+      alternatives: ["TensorFlow", "XGBoost"]
+
+    - component: "Authentication"
+      module: "core.kernel"
+      decision: "buy"
+      technology: "Keycloak"
+      status: "stable"
+      alternatives: ["Authentik", "Auth0"]
+
+    - component: "Multi-Agent Office"
+      module: "core.*"
+      decision: "build"
+      technology: "Custom — AQIOS Kernel"
+      status: "core-ip"
+      alternatives: []
+
+    - component: "Decision Engine"
+      module: "intel.decision"
+      decision: "build"
+      technology: "Custom — AQIOS Decision"
+      status: "core-ip"
+      alternatives: []
+
+    - component: "Money Management"
+      module: "intel.risk"
+      decision: "build"
+      technology: "Custom — AQIOS Risk"
+      status: "core-ip"
+      alternatives: []
+
+    - component: "Portfolio Manager"
+      module: "intel.portfolio"
+      decision: "build"
+      technology: "Custom — GPM"
+      status: "core-ip"
+      alternatives: []
+
+    - component: "Broker Intelligence"
+      module: "execution.broker"
+      decision: "build"
+      technology: "Custom — Broker Framework"
+      status: "core-ip"
+      alternatives: []
+
+    - component: "Knowledge System"
+      module: "knowledge.os"
+      decision: "build"
+      technology: "Custom — KOS"
+      status: "core-ip"
+      alternatives: []
+
+    - component: "Frontend"
+      module: "ux.dashboard"
+      decision: "buy+customize"
+      technology: "React + Next.js + shadcn/ui + ECharts"
+      status: "stable"
+      alternatives: ["Vue", "Svelte"]
+
+  # ===========================================================================
+  # Communication Protocols
+  # ===========================================================================
+  # Standardized event types that flow through the Event Bus.
+  # ===========================================================================
+  protocols:
+    event_types:
+      - "market.data.updated"
+      - "market.regime.changed"
+      - "analysis.signal.published"
+      - "risk.limit.breached"
+      - "risk.safe-mode.activated"
+      - "decision.proposed"
+      - "decision.approved"
+      - "decision.rejected"
+      - "order.placed"
+      - "order.filled"
+      - "order.rejected"
+      - "order.cancelled"
+      - "portfolio.updated"
+      - "portfolio.rebalanced"
+      - "portfolio.profit.locked"
+      - "strategy.created"
+      - "strategy.modified"
+      - "strategy.retired"
+      - "knowledge.entry.created"
+      - "knowledge.fact.verified"
+      - "meeting.scheduled"
+      - "meeting.minutes.published"
+      - "committee.vote.cast"
+      - "committee.verdict.reached"
+      - "employee.status.changed"
+      - "employee.kpi.updated"
+      - "incident.reported"
+      - "emergency.declared"
+      - "system.health.degraded"
+      - "system.self-healed"
+      - "proposal.submitted"
+      - "proposal.approved"
+      - "proposal.rejected"
+      - "change.rolled-back"
+
+    conversation_modes:
+      - "chat"           # One-to-one, DM
+      - "channel"        # One-to-many, topic-based
+      - "thread"         # Nested conversation
+      - "meeting"        # Structured, scheduled
+      - "debate"         # Pro/con argumentation
+      - "committee"      # Multi-party voting
+      - "whisper"        # Private DM
+      - "broadcast"      # All-hands announcement
+      - "emergency"      # Priority interrupt
+
+    change_levels:
+      auto:
+        description: "AI adjusts without approval"
+        examples: ["cache tuning", "queue prioritization", "load balancing"]
+      review:
+        description: "AI proposes, committee approves"
+        examples: ["strategy weight adjustment", "provider routing"]
+      owner_approval:
+        description: "Requires founder/human approval"
+        examples: ["new strategy deployment", "risk policy change", "new model"]
+      locked:
+        description: "No AI may modify"
+        examples: ["money management core rules", "max drawdown", "API secrets"]
+
+  # ===========================================================================
+  # Knowledge Pyramid
+  # ===========================================================================
+  # Multi-tier knowledge classification from the AI Constitution.
+  # ===========================================================================
+  knowledge_pyramid:
+    tier_0:
+      name: "Immutable"
+      description: "Core rules — AI may not modify"
+      includes:
+        - "risk policy constraints"
+        - "money management core rules"
+        - "broker compliance rules"
+        - "portfolio constitution limits"
+        - "API secrets & credentials"
+
+    tier_1:
+      name: "Official Documentation"
+      description: "Authoritative references — AI reads, cannot edit"
+      includes:
+        - "Python/MQL documentation"
+        - "broker specifications"
+        - "exchange rules"
+        - "MetaTrader5 Python API docs"
+
+    tier_2:
+      name: "Internal Knowledge"
+      description: "Company-generated knowledge — AI learns from"
+      includes:
+        - "trading journals"
+        - "backtest results"
+        - "research papers (internal)"
+        - "strategy documentation"
+        - "KPIs and performance records"
+
+    tier_3:
+      name: "External Academic"
+      description: "Published research — useful but unverified"
+      includes:
+        - "academic papers"
+        - "blog posts"
+        - "GitHub repositories"
+        - "book excerpts"
+
+    tier_4:
+      name: "Community"
+      description: "Unverified references — use with caution"
+      includes:
+        - "Reddit discussions"
+        - "Discord conversations"
+        - "Twitter/X threads"
+        - "forum posts"

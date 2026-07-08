@@ -1,0 +1,533 @@
+{
+  "metadata": {
+    "package": "ai-quant-office-os",
+    "version": "1.0.0",
+    "description": "Complete dependency graph for AQIOS — all 26 knowledge domains"
+  },
+  "nodes": [
+    {
+      "id": "D1",
+      "name": "AIOS Core",
+      "layer": "core",
+      "criticality": "critical"
+    },
+    {
+      "id": "D2",
+      "name": "Communication Engine",
+      "layer": "core",
+      "criticality": "critical"
+    },
+    {
+      "id": "D3",
+      "name": "Company Memory",
+      "layer": "data",
+      "criticality": "critical"
+    },
+    {
+      "id": "D4",
+      "name": "Task System",
+      "layer": "core",
+      "criticality": "high"
+    },
+    {
+      "id": "D5",
+      "name": "Knowledge OS",
+      "layer": "data",
+      "criticality": "critical"
+    },
+    {
+      "id": "D6",
+      "name": "AI Gateway",
+      "layer": "infra",
+      "criticality": "critical"
+    },
+    {
+      "id": "D7",
+      "name": "AI Employee System",
+      "layer": "core",
+      "criticality": "high"
+    },
+    {
+      "id": "D8",
+      "name": "Company Governance",
+      "layer": "core",
+      "criticality": "critical"
+    },
+    {
+      "id": "D9",
+      "name": "Plugin SDK",
+      "layer": "infra",
+      "criticality": "high"
+    },
+    {
+      "id": "D10",
+      "name": "Workflow Engine",
+      "layer": "core",
+      "criticality": "high"
+    },
+    {
+      "id": "D11",
+      "name": "Company Dashboard",
+      "layer": "ux",
+      "criticality": "medium"
+    },
+    {
+      "id": "D12",
+      "name": "AI Developer Kit",
+      "layer": "tools",
+      "criticality": "medium"
+    },
+    {
+      "id": "D13",
+      "name": "Strategy Engine",
+      "layer": "quant",
+      "criticality": "critical"
+    },
+    {
+      "id": "D14",
+      "name": "Decision Engine",
+      "layer": "quant",
+      "criticality": "critical"
+    },
+    {
+      "id": "D15",
+      "name": "Risk Engine",
+      "layer": "quant",
+      "criticality": "critical"
+    },
+    {
+      "id": "D16",
+      "name": "Portfolio Engine",
+      "layer": "quant",
+      "criticality": "high"
+    },
+    {
+      "id": "D17",
+      "name": "Money Management",
+      "layer": "quant",
+      "criticality": "critical"
+    },
+    {
+      "id": "D18",
+      "name": "Execution Engine",
+      "layer": "quant",
+      "criticality": "high"
+    },
+    {
+      "id": "D19",
+      "name": "Broker Intelligence",
+      "layer": "quant",
+      "criticality": "medium"
+    },
+    {
+      "id": "D20",
+      "name": "Market Regime Engine",
+      "layer": "quant",
+      "criticality": "high"
+    },
+    {
+      "id": "D21",
+      "name": "Research & AI Lab",
+      "layer": "quant",
+      "criticality": "medium"
+    },
+    {
+      "id": "D22",
+      "name": "Monitoring & Observability",
+      "layer": "infra",
+      "criticality": "high"
+    },
+    {
+      "id": "D23",
+      "name": "Simulation & Testing",
+      "layer": "tools",
+      "criticality": "high"
+    },
+    {
+      "id": "D24",
+      "name": "Continuous Evolution",
+      "layer": "core",
+      "criticality": "medium"
+    },
+    {
+      "id": "D25",
+      "name": "AI Culture & Society",
+      "layer": "core",
+      "criticality": "low"
+    },
+    {
+      "id": "D26",
+      "name": "UX & Design System",
+      "layer": "ux",
+      "criticality": "medium"
+    }
+  ],
+  "edges": [
+    {
+      "from": "D1",
+      "to": "D2",
+      "type": "depends",
+      "description": "Identity for communication"
+    },
+    {
+      "from": "D1",
+      "to": "D6",
+      "type": "depends",
+      "description": "Auth for gateway"
+    },
+    {
+      "from": "D1",
+      "to": "D4",
+      "type": "depends",
+      "description": "Identity for task assignment"
+    },
+    {
+      "from": "D1",
+      "to": "D7",
+      "type": "depends",
+      "description": "Identity for employee records"
+    },
+    {
+      "from": "D1",
+      "to": "D8",
+      "type": "depends",
+      "description": "Permission for governance"
+    },
+    {
+      "from": "D1",
+      "to": "D9",
+      "type": "depends",
+      "description": "Auth for plugin loading"
+    },
+    {
+      "from": "D1",
+      "to": "D25",
+      "type": "depends",
+      "description": "Identity for personality"
+    },
+    {
+      "from": "D2",
+      "to": "D3",
+      "type": "depends",
+      "description": "Conversation memory"
+    },
+    {
+      "from": "D3",
+      "to": "D5",
+      "type": "depends",
+      "description": "Memory feeds knowledge"
+    },
+    {
+      "from": "D5",
+      "to": "D4",
+      "type": "depends",
+      "description": "Knowledge for task context"
+    },
+    {
+      "from": "D5",
+      "to": "D8",
+      "type": "depends",
+      "description": "Evidence for governance"
+    },
+    {
+      "from": "D5",
+      "to": "D21",
+      "type": "depends",
+      "description": "Knowledge base for research"
+    },
+    {
+      "from": "D6",
+      "to": "D7",
+      "type": "depends",
+      "description": "Models for AI employees"
+    },
+    {
+      "from": "D6",
+      "to": "D14",
+      "type": "depends",
+      "description": "Multi-model voting"
+    },
+    {
+      "from": "D6",
+      "to": "D21",
+      "type": "depends",
+      "description": "Models for research analysis"
+    },
+    {
+      "from": "D8",
+      "to": "D5",
+      "type": "depends",
+      "description": "Audit log storage"
+    },
+    {
+      "from": "D8",
+      "to": "D4",
+      "type": "depends",
+      "description": "Proposal tracking"
+    },
+    {
+      "from": "D8",
+      "to": "D24",
+      "type": "depends",
+      "description": "Change mgmt for evolution"
+    },
+    {
+      "from": "D9",
+      "to": "D10",
+      "type": "depends",
+      "description": "Plugin SDK enables workflow plugins"
+    },
+    {
+      "from": "D9",
+      "to": "D12",
+      "type": "depends",
+      "description": "Plugin SDK enables dev kit"
+    },
+    {
+      "from": "D10",
+      "to": "D13",
+      "type": "depends",
+      "description": "Workflow for strategy lifecycle"
+    },
+    {
+      "from": "D13",
+      "to": "D14",
+      "type": "depends",
+      "description": "Strategy signals to decision"
+    },
+    {
+      "from": "D13",
+      "to": "D20",
+      "type": "depends",
+      "description": "Strategy routing by regime"
+    },
+    {
+      "from": "D13",
+      "to": "D15",
+      "type": "depends",
+      "description": "Strategy risk check"
+    },
+    {
+      "from": "D13",
+      "to": "D17",
+      "type": "depends",
+      "description": "Strategy position sizing"
+    },
+    {
+      "from": "D14",
+      "to": "D15",
+      "type": "depends",
+      "description": "Decision passes risk"
+    },
+    {
+      "from": "D14",
+      "to": "D16",
+      "type": "depends",
+      "description": "Decision checks portfolio"
+    },
+    {
+      "from": "D14",
+      "to": "D2",
+      "type": "depends",
+      "description": "Committee discussion"
+    },
+    {
+      "from": "D15",
+      "to": "D16",
+      "type": "depends",
+      "description": "Risk measures portfolio"
+    },
+    {
+      "from": "D15",
+      "to": "D17",
+      "type": "depends",
+      "description": "Risk modifies MM"
+    },
+    {
+      "from": "D15",
+      "to": "D19",
+      "type": "depends",
+      "description": "Risk uses broker data"
+    },
+    {
+      "from": "D16",
+      "to": "D15",
+      "type": "depends",
+      "description": "Portfolio reports to risk"
+    },
+    {
+      "from": "D16",
+      "to": "D17",
+      "type": "depends",
+      "description": "Portfolio allocation to MM"
+    },
+    {
+      "from": "D17",
+      "to": "D18",
+      "type": "depends",
+      "description": "MM sizes execution"
+    },
+    {
+      "from": "D18",
+      "to": "D19",
+      "type": "depends",
+      "description": "Execution uses broker"
+    },
+    {
+      "from": "D19",
+      "to": "D18",
+      "type": "depends",
+      "description": "Broker data to execution"
+    },
+    {
+      "from": "D20",
+      "to": "D14",
+      "type": "depends",
+      "description": "Regime adjusts decision"
+    },
+    {
+      "from": "D21",
+      "to": "D5",
+      "type": "depends",
+      "description": "Research stores in knowledge"
+    },
+    {
+      "from": "D21",
+      "to": "D13",
+      "type": "depends",
+      "description": "Research produces strategies"
+    },
+    {
+      "from": "D22",
+      "to": "D1",
+      "type": "depends",
+      "description": "Monitor system health"
+    },
+    {
+      "from": "D22",
+      "to": "D15",
+      "type": "depends",
+      "description": "Monitor risk metrics"
+    },
+    {
+      "from": "D23",
+      "to": "D4",
+      "type": "depends",
+      "description": "Test as tasks"
+    },
+    {
+      "from": "D23",
+      "to": "D13",
+      "type": "depends",
+      "description": "Test strategies"
+    },
+    {
+      "from": "D23",
+      "to": "D5",
+      "type": "depends",
+      "description": "Compare with knowledge"
+    },
+    {
+      "from": "D24",
+      "to": "D7",
+      "type": "depends",
+      "description": "Evolution affects employees"
+    },
+    {
+      "from": "D24",
+      "to": "D8",
+      "type": "depends",
+      "description": "Evolution proposes changes"
+    },
+    {
+      "from": "D24",
+      "to": "D13",
+      "type": "depends",
+      "description": "Evolve strategies"
+    },
+    {
+      "from": "D11",
+      "to": "D2",
+      "type": "depends",
+      "description": "Dashboard shows comms"
+    },
+    {
+      "from": "D11",
+      "to": "D14",
+      "type": "depends",
+      "description": "Dashboard shows decisions"
+    },
+    {
+      "from": "D11",
+      "to": "D15",
+      "type": "depends",
+      "description": "Dashboard shows risk"
+    },
+    {
+      "from": "D11",
+      "to": "D16",
+      "type": "depends",
+      "description": "Dashboard shows portfolio"
+    },
+    {
+      "from": "D26",
+      "to": "D11",
+      "type": "depends",
+      "description": "Design system for dashboard"
+    }
+  ],
+  "critical_path": [
+    "D1",
+    "D2",
+    "D3",
+    "D5",
+    "D8",
+    "D14",
+    "D15",
+    "D17",
+    "D18",
+    "D24"
+  ],
+  "layers": {
+    "core": [
+      "D1",
+      "D2",
+      "D4",
+      "D7",
+      "D8",
+      "D10",
+      "D24",
+      "D25"
+    ],
+    "infra": [
+      "D6",
+      "D9",
+      "D22"
+    ],
+    "data": [
+      "D3",
+      "D5"
+    ],
+    "quant": [
+      "D13",
+      "D14",
+      "D15",
+      "D16",
+      "D17",
+      "D18",
+      "D19",
+      "D20",
+      "D21"
+    ],
+    "tools": [
+      "D12",
+      "D23"
+    ],
+    "ux": [
+      "D11",
+      "D26"
+    ]
+  },
+  "no_circular_dependency": true,
+  "critical_path_description": "Infrastructure -> Communication -> Identity -> Memory -> Knowledge -> Decision -> Risk -> Execution -> Evolution"
+}

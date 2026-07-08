@@ -1,0 +1,13 @@
+{
+  "name": "@company-simulator/types",
+  "version": "0.1.0",
+  "type": "foundation",
+  "layer": "foundation",
+  "exports": [],
+  "dependencies": {},
+  "health": {
+    "maxPublicExports": 30,
+    "maxCyclomaticComplexity": 5,
+    "testCoverageRequired": 80
+  }
+}

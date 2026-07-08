@@ -1,0 +1,52 @@
+name: validate
+
+# Architecture enforcement gate — runs the same checks as .husky/pre-push so a
+# push that bypasses local hooks still cannot land a structural violation.
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dev tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff jsonschema pytest pytest-asyncio
+
+      - name: Lint (ruff)
+        run: ruff check .
+
+      - name: Validate module manifests
+        run: python scripts/validate-modules.py
+
+      - name: Layer boundary check
+        run: python scripts/check-layer-boundary.py
+
+      - name: Circular import check
+        run: python scripts/check-circular-imports.py
+
+      - name: API surface check
+        run: python scripts/check-api-surface.py
+
+      - name: Internal imports check
+        run: python scripts/check-internal-imports.py
+
+      - name: ADR check
+        run: python scripts/check-adr.py
+
+      - name: Tests
+        run: python -m pytest -x --tb=short

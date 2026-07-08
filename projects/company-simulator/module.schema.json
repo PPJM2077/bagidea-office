@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.company-simulator.dev/module.json",
+  "title": "Company Simulator Module Manifest",
+  "description": "Every module in company-simulator must have a module.json conforming to this schema.",
+  "type": "object",
+  "required": ["name", "version", "type", "layer"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^@company-simulator/[a-z][a-z0-9-]*$",
+      "description": "Scoped package name, e.g. @company-simulator/simulation-engine"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "SemVer version (MAJOR.MINOR.PATCH)"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["foundation", "core", "extension", "plugin", "feature", "app"],
+      "description": "Module type — maps to layer position in the dependency graph"
+    },
+    "layer": {
+      "type": "string",
+      "enum": ["foundation", "core", "extension", "feature", "app"],
+      "description": "Runtime layer (applies dependency direction rules)"
+    },
+    "exports": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Symbols this module intentionally exposes as public API"
+    },
+    "dependencies": {
+      "type": "object",
+      "patternProperties": {
+        "^@company-simulator/": { "type": "string", "pattern": "^>=\\d+\\.\\d+\\.\\d+$" },
+        "^(?!@company-simulator/)": { "type": "string" }
+      },
+      "additionalProperties": false,
+      "description": "Map of module-name → semver range. Cross-module deps must be declared here."
+    },
+    "health": {
+      "type": "object",
+      "properties": {
+        "maxPublicExports":  { "type": "integer", "minimum": 1, "maximum": 50 },
+        "maxCyclomaticComplexity": { "type": "integer", "minimum": 1 },
+        "testCoverageRequired": { "type": "integer", "minimum": 0, "maximum": 100 }
+      },
+      "additionalProperties": false
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "reviewers": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "stability": {
+          "type": "string",
+          "enum": ["stable", "experimental", "deprecated"]
+        }
+      },
+      "required": ["name", "stability"],
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
